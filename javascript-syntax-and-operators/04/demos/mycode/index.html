@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Math and Comparison Operators Samples</title>
+</head>
+
+<body>
+  <button onclick="mathSample();">Math</button>
+  <button onclick="plusSignSample();">Plus sign with Numbers and Strings</button>
+  <button onclick="assignmentSample();">Assignment</button>
+  <button onclick="comparisonSample();">Comparison Operators</button>
+  <button onclick="useStrictSample();">'use strict'</button>
+
+  <script>
+    // Math operators
+    function mathSample() {
+      let price = 300;
+      let result = 0;
+
+      console.log("price = " + price.toString());
+
+      // Addition
+      result = price + 50;
+      console.log("Price + 50 = " + result.toString());
+
+      // Subtraction
+      result = price - 4;
+      console.log("Price - 4 = " + result.toString());
+
+      // Multiplication
+      result = price * 100;
+      console.log("Price * 100 = " + result.toString());
+
+      // Division
+      result = price / 2;
+      console.log("Price divided by 2 = " + result.toString());
+
+      // Exponentiation
+      result = price ** 3; // 300 * 300 * 300
+      console.log("Price ** 3 = " + result.toString());
+
+      // Modulus
+      result = price % 2;
+      console.log("Price % 2 = " + result.toString());
+
+      result = price % 73; // 4 * 73 = 292. 300 - 292 = 8
+      console.log("Price % 73 = " + result.toString());
+
+      // Increment
+      console.log("Increment:");
+      console.log("Starting out: " + price.toString());
+      result = price++;
+      //result = ++price;
+      console.log(" Price increment = " + result.toString());
+      result = price++;
+      console.log(" Price increment = " + result.toString());
+      result = price++;
+      console.log(" Price increment = " + result.toString());
+
+      // Decrement
+      console.log("Decrement:");
+      console.log("Starting out: " + price.toString());
+      result = --price;
+      //result = price--;
+      console.log(" Price decrement = " + result.toString());
+      result = --price;
+      console.log(" Price decrement = " + result.toString());
+      result = --price;
+      console.log(" Price decrement = " + result.toString());
+
+      // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Increment 
+      // for difference between ++x and x++ / --x and x--
+    };
+
+    // Plus sign with Numbers & strings
+    function plusSignSample() {
+      let age = 50;
+      let name = "100";
+      let result = 0;
+
+      console.log("age = " + age.toString());
+
+      result = age + name;
+      console.log("result (number + string) = " + result.toString());
+
+      result = age + (+name); //convert to number
+      console.log("result (number + (+string) = " + result.toString());
+    };
+
+    // Assignment Operator
+    //
+    // This is basically shorthand - compare with mathSample()
+    function assignmentSample() {
+      let price = 300;
+
+      console.log("price = " + price.toString());
+
+      // Addition
+      price += 50;
+      console.log("Price + 50 = " + price.toString());
+
+      // Subtraction
+      price -= 4;
+      console.log("Price - 4 = " + price.toString());
+
+      // Multiplication
+      price *= 100;
+      console.log("Price * 100 = " + price.toString());
+
+      // Division
+      price /= 2;
+      console.log("Price divided by 2 = " + price.toString());
+
+      // Exponentiation
+      price **= 3; // 300 * 300 * 300
+      console.log("Price ** 3 = " + price.toString());
+
+      // Modulus
+      price %= 2;
+      console.log("Price % 2 = " + price.toString());
+
+      price %= 73; // 4 * 73 = 292. 300 - 292 = 8
+      console.log("Price % 73 = " + price.toString());
+    };
+
+    // Comparison Operators
+    function comparisonSample() {
+      let age = 300;
+      let result = 0;
+
+      console.log("age = " + age.toString());
+      console.log("result = " + result.toString());
+
+      //Equal to (==) [equal in value]
+      console.log("age == age = " + (age == age).toString());
+
+      //Equal to (==) [equal in value]
+      result = age.toString();
+      console.log("age(number) == result(string) = " + (age == result).toString());
+
+      //Equal to (===) [equal in type AND value]
+      result = age;
+      console.log("age(number) === result(number) = " + (age === result).toString());
+
+      //Equal to (===) [equal in type AND value]
+      result = age.toString();
+      console.log("age(number) === result(string) = " + (age === result).toString());
+      console.log("");
+
+      //Not Equal to (!=) [not equal to value]
+      result = 50;
+      console.log("result = " + result.toString());
+      console.log("age = " + age.toString());
+      console.log("age(number) != result(number) = " + (age != result).toString());
+
+      //Not Equal to (!==) [not eqaul to value AND type]
+      result = age.toString();
+      console.log("age(number) !== result(string) = " + (age !== result).toString());
+      console.log("");
+
+      //Greater Than
+      console.log("age = " + age.toString());
+      console.log("age > age = " + (age > age).toString());
+
+      //Greater Than or Equal to
+      console.log("age >= age = " + (age >= age).toString());
+
+      //Less Than
+      console.log("age = " + age.toString());
+      console.log("age < age = " + (age < age).toString());
+
+      //Less Than or Equal to
+      console.log("age <= age = " + (age <= age).toString());
+      console.log("");
+
+      //Ternary (if/else shorthand)
+      result = age < 150 ? "less than 150" : "greater than 150";
+      console.log("ternary = " + result);
+    };
+
+    // Illustrate usage of 'use strict'
+    function useStrictSample() {
+      'use strict' // Comment out this line to see the following code work
+
+      // Can't use a variable without 'var' or 'let' keywords
+      result = 10;
+      console.log(result);
+
+      // Can't use reserved words as variables
+      //let eval = 10;
+      //let arguments = "some args";
+
+      // Can't delete a variable
+      //delete result;
+
+      // Can't delete a function
+      //delete useStrictSample;
+    };
+  </script>
+</body>
+
+</html>
