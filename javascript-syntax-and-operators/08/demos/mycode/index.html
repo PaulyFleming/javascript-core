@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>'this' Samples</title>
+</head>
+
+<body>
+  <button onclick="functionScope();">Function scope</button>
+  <button onclick="this.style.background='Red'">
+    In event handler
+  </button>
+  <button onclick="eventHandler(this)">
+    Pass to function from event handler
+  </button>
+  <button onclick="objectLiteral();">Object literal</button>
+  <button onclick="callAndApply();">Use with call()/apply()</button>
+  <button onclick="constructorFunctions();">Constructor Functions</button>
+
+  <script>
+  'use strict'; // makes 'this' undefined in functions
+
+    //Constructor Example
+    // constructor functions own 'this;
+    function Band(name, genre, members) {
+      this.name = name;
+      this.genre = genre;
+      this.members = members;
+      this.logInfo = function () {
+        console.log(this.genre.toString() + " band " + this.name + " has " + this.members + " members! Rock!");
+      }
+    }
+
+    let band1 = new Band("Slug", "Doom", 5);
+    let band2 = new Band("Troll", "Sludge", 3);
+    band1.logInfo();
+    band2.logInfo();
+
+    console.log("");
+
+    // GLobal scope for 'this' (mapped to window object)
+    console.log("Begin: global scope sample");
+    console.log(this.toString());
+    console.log("this === window = " + (this === window).toString());
+    console.log("End: global scope sample");
+
+    // Function scope - 'this' is mapped to global/window object
+    //                  Uncomment 'use strict' above to show how it affects this function
+    function functionScope() {
+      console.log(this.toString());
+      console.log("this === window = " + (this === window).toString());
+    }
+
+    
+    // Pass 'this' to function from event handler
+    function eventHandler(ctl) {
+      console.log(ctl.toString());
+    }
+
+    // Object literal
+    function objectLiteral() {
+      let product = {
+        "productID": 680,
+        "name": "HL Road Frame - Black, 58",
+        "standardCost": 1059.31,
+        "listPrice": 1431.50,
+        grossProfit: function () {
+          return (this.listPrice - this.standardCost)
+            .toLocaleString('en-US', {
+              style: 'currency', currency: 'USD'
+            });
+        }
+      };
+
+      console.log(product.grossProfit());
+    }
+
+    // What's passed to call/apply 
+    // becomes 'this'
+    function callAndApply() {
+      let product = {
+        "productID": 689,
+        "name": "Turner Blades",
+        "standardCost": 1000,
+        "listPrice": 1400,
+        grossProfit: function () {
+          return (this.listPrice - this.standardCost)
+            .toLocaleString('en-US', {
+              style: 'currency', currency: 'USD'
+            });
+        }
+      };
+
+      let prod2 = {
+        "standardCost": 500,
+        "listPrice": 1000
+      }
+
+      // Call using reference to 'product' properties
+      console.log(product.grossProfit.call(product));
+      // Call using reference to 'prod2' properties
+      console.log(product.grossProfit.call(prod2));
+      console.log("");
+      console.log(product.grossProfit.apply(product));
+      console.log(product.grossProfit.apply(prod2));
+
+    }
+
+  
+
+
+
+  </script>
+</body>
+
+</html>
