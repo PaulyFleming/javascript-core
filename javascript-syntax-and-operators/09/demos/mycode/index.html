@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Spread Operator Samples</title>
+</head>
+
+<body>
+  <p>NOTE: IE and Edge do not support the Spread operator</p>
+  <button onclick="stringToArray();">Convert string to array</button>
+  <button onclick="filterDupes();">Filter duplicates from array</button>
+
+  <button onclick="copyArray();">Copy</button>
+  <button onclick="copyObjectArrays();">Copy Object Arrays</button>
+  <button onclick="concatenateArray();">Concatentation</button>
+
+  <button onclick="spreadInConstructors()">Using Spread in constructors</button>
+  <button onclick="spreadForFunctionArgs();">Using Spread for function arguments</button>
+
+  <button onclick="objectLiterals();">Object literals</button>
+
+  <script>
+    'use strict';
+
+    let _products = [
+      {
+        productID: 680,
+        name: "HL Road Frame - Black, 58",
+        productNumber: "FR-R92B-58",
+        color: "Black",
+        standardCost: 1059.31,
+        listPrice: 1431.50
+      },
+      {
+        productID: 707,
+        name: "Sport-100 Helmet, Red",
+        productNumber: "HL-U509-R",
+        color: "Red",
+        standardCost: 13.08,
+        listPrice: 34.99
+      },
+      {
+        productID: 709,
+        name: "Mountain Bike Socks, M",
+        productNumber: "SO-B909-M",
+        color: "White",
+        standardCost: 3.3963,
+        listPrice: 9.50
+      }
+    ];
+
+    let _newProducts = [{
+      productID: 712,
+      name: "AWC Logo Cap",
+      productNumber: "CA-1098",
+      color: "Multi",
+      standardCost: 6.9223,
+      listPrice: 8.99
+    },
+    {
+      productID: 821,
+      name: "Touring Front Wheel",
+      productNumber: "FW-T905",
+      color: "Black",
+      standardCost: 96.7964,
+      listPrice: 218.01
+    }
+    ];
+
+    // String to array
+   function stringToArray() {
+     let productNumber = "Mighty Banana";
+
+     let values = [...productNumber];
+
+     console.log(values);
+   }
+
+   // Copy Array
+   function copyArray() {
+     let arr = [9, 19, 29, 39];
+     let arr2 = [...arr];
+
+     //Changes in the dupe array:
+     arr2.push(4);
+     arr2[0] = 9999;
+
+     console.log(arr);
+     console.log(arr2);
+   }
+
+   //Copy array of objects
+   //WARNING: this copies the array,
+   // but the underlying objects are still accessed by reference
+   function copyObjectArrays() {
+     let diff = [..._products];
+
+     // Modify a property in new array
+     diff[0].color = "JiminyCrickett";
+
+     console.log(_products[0].color);
+     console.log(diff[0].color);
+   }
+
+   // Concatenate Two arrays
+   function concatenateArray() {
+     let allProducts = _products.concat(_newProducts);
+     console.log(allProducts.length);
+
+     let spProducts = [..._products, ..._newProducts];
+     console.log(spProducts.length);
+   }
+
+   // Using spread in Constructors
+   function spreadInConstructors() {
+     let dt = new Date(2021, 10, 16); // 16 Oct 2021
+     console.log(dt);
+
+     let dateFields = [2021, 11, 16]; // 16 Nov 2021
+     dt = new Date(...dateFields);
+     console.log(dt);
+   }
+
+   //Spread with function params
+   function spreadForFunctionArgs() {
+     multipleParams(1, 2, 3);
+
+     let args = [1, 2, 3];
+     multipleParams(...args);
+   }
+
+   function multipleParams(arg1, arg2, arg3) {
+     console.log(arg1);
+     console.log(arg2);
+     console.log(arg3);
+     console.log('');
+   }
+
+   // Spread w Object Literals
+   function objectLiterals() {
+     let band = {
+       name: 'Bundy',
+       members: 5,
+       records: 24,
+       fans: 1000000
+     };
+
+     // perform a shallow copy
+     // like Object..assign()
+     let band2 = { ...band };
+
+
+    // Change new object
+    band2.fans = 34567;
+    band2.name = "Mothers";
+    band2.records = 3;
+
+     //display objects
+     console.log(band);
+     console.log(band2);
+
+     //display example changed values
+     console.log("");
+     console.log(band.name + band.fans);
+     console.log(band2.name + band2.fans);
+
+   }
+
+
+
+
+  </script>
+</body>
+
+</html>
